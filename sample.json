@@ -1,13 +1,60 @@
 {
-  "posts": [
-    { "id": "1", "title": "a title", "views": 100 },
-    { "id": "2", "title": "another title", "views": 200 }
-  ],
-  "comments": [
-    { "id": "1", "text": "a comment about post 1", "postId": "1" },
-    { "id": "2", "text": "another comment about post 1", "postId": "1" }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  "week_temperatures": [
+    {
+      "day": "Monday",
+      "temperatures": {
+        "morning": 15,
+        "afternoon": 20,
+        "evening": 18
+      }
+    },
+    {
+      "day": "Tuesday",
+      "temperatures": {
+        "morning": 16,
+        "afternoon": 22,
+        "evening": 19
+      }
+    },
+    {
+      "day": "Wednesday",
+      "temperatures": {
+        "morning": 14,
+        "afternoon": 21,
+        "evening": 17
+      }
+    },
+    {
+      "day": "Thursday",
+      "temperatures": {
+        "morning": 13,
+        "afternoon": 19,
+        "evening": 16
+      }
+    },
+    {
+      "day": "Friday",
+      "temperatures": {
+        "morning": 15,
+        "afternoon": 23,
+        "evening": 20
+      }
+    },
+    {
+      "day": "Saturday",
+      "temperatures": {
+        "morning": 17,
+        "afternoon": 24,
+        "evening": 21
+      }
+    },
+    {
+      "day": "Sunday",
+      "temperatures": {
+        "morning": 18,
+        "afternoon": 25,
+        "evening": 22
+      }
+    }
+  ]
 }
