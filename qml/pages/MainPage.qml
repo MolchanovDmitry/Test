@@ -52,6 +52,17 @@ Page {
                         Layout.alignment: Qt.AlignRight
                     }
                 }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        pageStack.push(Qt.resolvedUrl("DetailsPage.qml"), {
+                                           "dayTitle": model.weekName,
+                                           "morningTemp": model.morningTemp,
+                                           "afternoonTemp": model.afternoonTemp,
+                                           "eveningTemp": model.eveningTemp
+                                       })
+                    }
+                }
             }
         }
     }

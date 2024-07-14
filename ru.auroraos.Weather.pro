@@ -22,6 +22,7 @@ HEADERS += \
     src/weatherrepository.h
 
 DISTFILES += \
+    qml/pages/DetailsPage.qml \
     rpm/ru.auroraos.Weather.spec \
 
 AURORAAPP_ICONS = 86x86 108x108 128x128 172x172
