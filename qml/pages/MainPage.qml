@@ -6,47 +6,51 @@ Page {
     objectName: "mainPage"
     allowedOrientations: Orientation.All
 
-    PageHeader {
-        objectName: "pageHeader"
-        title: qsTr("Template")
-        extraContent.children: [
-            IconButton {
-                objectName: "aboutButton"
-                icon.source: "image://theme/icon-m-about"
-                anchors.verticalCenter: parent.verticalCenter
-
-                onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
-            }
-        ]
-    }
-
-    ListView {
+    Column {
         anchors.fill: parent
-        model: weatherModel
 
-        delegate: Item {
-            width: parent.width
-            height: 50
+        PageHeader {
+            id: pageHeader
+            title: qsTr("Template")
+        }
 
-            RowLayout {
-                anchors.fill: parent
-                spacing: 10
+        ListView {
+            anchors {
+                left: parent.left
+                right: parent.right
+                top: pageHeader.bottom
+                bottom: parent.bottom
+            }
+            anchors.leftMargin: Theme.horizontalPageMargin
+            anchors.rightMargin: Theme.horizontalPageMargin
+            model: weatherModel
 
-                Text {
-                    text: model.weekName
-                    Layout.alignment: Qt.AlignLeft
-                    Layout.fillWidth: true
-                }
+            delegate: Item {
+                width: parent.width
+                height: 50
 
-                Text {
-                    text: {
-                        var morning = model.morningTemp
-                        var afternoon = model.afternoonTemp
-                        var evening = model.eveningTemp
-                        var average = (morning + afternoon + evening) / 3
-                        return average.toFixed(1) + " °C"
+                RowLayout {
+                    anchors.fill: parent
+                    spacing: 10
+
+                    Text {
+                        text: model.weekName
+                        Layout.alignment: Qt.AlignLeft
+                        Layout.fillWidth: true
+                        color: Theme.primaryColor
                     }
-                    Layout.alignment: Qt.AlignRight
+
+                    Text {
+                        color: Theme.primaryColor
+                        text: {
+                            var morning = model.morningTemp
+                            var afternoon = model.afternoonTemp
+                            var evening = model.eveningTemp
+                            var average = (morning + afternoon + evening) / 3
+                            return average.toFixed(1) + " °C"
+                        }
+                        Layout.alignment: Qt.AlignRight
+                    }
                 }
             }
         }
