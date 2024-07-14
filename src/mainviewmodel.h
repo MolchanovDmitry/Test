@@ -12,7 +12,7 @@ class MainViewModel : public QObject
 public:
     explicit MainViewModel(QObject *parent = nullptr, WeatherRepository* weatherRepository = nullptr);
 
-    const WeatherModel* getWeatherModel() const {
+    WeatherModel* getWeatherModel() const {
         return weatherModel;
     }
 
