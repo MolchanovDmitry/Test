@@ -31,4 +31,8 @@ private:
     WeatherData weatherData;
 };
 
+// Регистрация типа для системы мета-объектов Qt
+Q_DECLARE_METATYPE(WeatherModel*)
+Q_DECLARE_METATYPE(const WeatherModel*)
+
 #endif // WEATHERMODEL_H

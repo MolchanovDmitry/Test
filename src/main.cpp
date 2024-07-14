@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
     WeatherRepository *repository = new WeatherRepository(parent, new QNetworkAccessManager(parent));
     MainViewModel *mainViewModel = new MainViewModel(parent, repository);
-    WeatherModel *weatherModel = mainViewModel->weatherModel;
+    const WeatherModel *weatherModel = mainViewModel->getWeatherModel();
 
     // Добавляем в контекст QML модели.
     view->rootContext()->setContextProperty("weatherModel", QVariant::fromValue(weatherModel));
