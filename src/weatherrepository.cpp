@@ -8,7 +8,7 @@
 
 const static QString url = "https://raw.githubusercontent.com/MolchanovDmitry/Test/master/sample.json";
 
-WeatherRepository::WeatherRepository(QObject *parent) : QObject(parent)
+WeatherRepository::WeatherRepository(QObject *parent, QNetworkAccessManager *netMan) : QObject(parent), netMan(netMan)
 {
 
 }
@@ -16,12 +16,12 @@ WeatherRepository::WeatherRepository(QObject *parent) : QObject(parent)
 QFuture<WeatherData*> WeatherRepository::getWeatherData()
 {
     qDebug()<<"get weather data 1";
-    return QtConcurrent::run([]() {
+    return QtConcurrent::run([this]() {
         qDebug()<<"get weather data 2";
         qDebug()<<"current thread 1 "<<QThread::currentThreadId();
         QNetworkRequest request(url);
-        QNetworkAccessManager *netMan = new QNetworkAccessManager();
-        QNetworkReply *reply = netMan->get(request);
+
+        QNetworkReply *reply = this->netMan->get(request);
         qDebug()<<"check 1";
 
         QEventLoop loop;
@@ -31,7 +31,7 @@ QFuture<WeatherData*> WeatherRepository::getWeatherData()
         qDebug()<<"check 2";
 
         QByteArray responseData = reply->readAll();
-        reply->deleteLater();
+        //reply->deleteLater();
 
         qDebug()<<"get weather data 3 "<<QString(responseData);
 

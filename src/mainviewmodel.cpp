@@ -2,18 +2,21 @@
 #include <QFutureWatcher>
 #include <QDebug>
 
-MainViewModel::MainViewModel(QObject *parent, WeatherRepository *weatherRepository) : QObject(parent)
+MainViewModel::MainViewModel(QObject *parent, WeatherRepository *weatherRepository) : QObject(parent), weatherRepository(weatherRepository)
 {
     qDebug() << "check 1";
 
-    QObject::connect(&this->watcher, &QFutureWatcher<WeatherData*>::finished, [this](){
+    QObject::connect(this->watcher, &QFutureWatcher<WeatherData*>::finished, [this](){
         qDebug() << "check 2";
-        WeatherData *weatherData = this->watcher.result();
+        WeatherData *weatherData = this->watcher->result();
+        qDebug() << "check 3";
 
         qDebug() << weatherData->weekTemperatures.first().weekName;
-        weatherModel->setWeatherData(*weatherData);
+        qDebug() << "check 4";
+        this->weatherModel->setWeatherData(*weatherData);
+        qDebug() << "check 5";
     });
-    QFuture<WeatherData*> weatherDataFuture = weatherRepository->getWeatherData();
+    this->weatherDataFuture = this->weatherRepository->getWeatherData();
     qDebug() << "check 3";
-    this->watcher.setFuture(weatherDataFuture);
+    this->watcher->setFuture(weatherDataFuture);
 }

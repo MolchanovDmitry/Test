@@ -10,9 +10,12 @@ class WeatherRepository : public QObject
 {
     Q_OBJECT
 public:
-    explicit WeatherRepository(QObject *parent = nullptr);
+    explicit WeatherRepository(QObject *parent = nullptr, QNetworkAccessManager *netMan = nullptr);
 
     QFuture<WeatherData*> getWeatherData();
+
+private:
+    QNetworkAccessManager *netMan;
 
 };
 

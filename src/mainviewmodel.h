@@ -12,9 +12,13 @@ class MainViewModel : public QObject
 public:
     explicit MainViewModel(QObject *parent = nullptr, WeatherRepository* weatherRepository = nullptr);
 
-    WeatherModel *weatherModel;
+    WeatherModel *weatherModel = new WeatherModel(this);
 
-    QFutureWatcher<WeatherData*> watcher;
+    QFutureWatcher<WeatherData*> *watcher = new QFutureWatcher<WeatherData*>(this);
+
+    QFuture<WeatherData*> weatherDataFuture;
+
+    WeatherRepository *weatherRepository;
 
 };
 

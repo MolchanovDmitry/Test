@@ -15,9 +15,11 @@ int main(int argc, char *argv[])
     view->setSource(Aurora::Application::pathTo(QStringLiteral("qml/Weather.qml")));
     view->show();
 
-    WeatherRepository *repository;
-    MainViewModel mainViewModel(repository);
-    WeatherModel *weatherModel = mainViewModel.weatherModel;
+    auto parent = application.data();
+
+    WeatherRepository *repository = new WeatherRepository(parent, new QNetworkAccessManager(parent));
+    MainViewModel *mainViewModel = new MainViewModel(parent, repository);
+    WeatherModel *weatherModel = mainViewModel->weatherModel;
 
     // Добавляем в контекст QML модели.
     view->rootContext()->setContextProperty("weatherModel", QVariant::fromValue(weatherModel));
